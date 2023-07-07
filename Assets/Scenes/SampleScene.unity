@@ -434,6 +434,7 @@ GameObject:
   - component: {fileID: 1721780347}
   - component: {fileID: 1721780346}
   - component: {fileID: 1721780351}
+  - component: {fileID: 1721780352}
   - component: {fileID: 1721780350}
   m_Layer: 0
   m_Name: AlarmSystem
@@ -626,6 +627,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 473302ec283531d4fba84526131b1580, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _volumeController: {fileID: 1721780352}
+--- !u!114 &1721780352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1721780345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87f4ca7f36716e044ba619e06179e238, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _alarmSound: {fileID: 1721780350}
