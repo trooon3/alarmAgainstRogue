@@ -10,7 +10,7 @@ public class RogueInsideHouseChecker : MonoBehaviour
     {
         if (collider.TryGetComponent(out Rogue rogue))
         {
-            _volumeController.StartAlarmVolumeUpper();
+            _volumeController.StartControlAlarmVolume(true);
         }
     }
 
@@ -18,7 +18,7 @@ public class RogueInsideHouseChecker : MonoBehaviour
     {
         if (collider.TryGetComponent(out Rogue rogue))
         {
-            _volumeController.StartAlarmVolumeDowner();
+            _volumeController.StartControlAlarmVolume(false);
         }
     }
 }

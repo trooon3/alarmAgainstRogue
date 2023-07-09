@@ -9,48 +9,31 @@ public class AlarmVolumeController : MonoBehaviour
     private float _changeSpeed = 0.2f;
     private float _minVolume = 0f;
     private float _maxVolume = 1f;
-
-    private IEnumerator _alarmVolumeUpper()
-    {
-        while (_alarmSound.volume < _maxVolume)
-        {
-            _alarmSound.volume = Mathf.MoveTowards(_alarmSound.volume, _maxVolume, _changeSpeed * Time.deltaTime);
-            yield return null;
-        }
-    }
+    private Coroutine _corutine; 
     
-    private IEnumerator _alarmVolumeDowner()
+    private IEnumerator ControlAlarmVolume(float targetValue)
     {
-        while (_alarmSound.volume > _minVolume)
+        while (_alarmSound.volume != targetValue)
         {
-            _alarmSound.volume = Mathf.MoveTowards(_alarmSound.volume, _minVolume, _changeSpeed * Time.deltaTime);
+            _alarmSound.volume = Mathf.MoveTowards(_alarmSound.volume, targetValue, _changeSpeed * Time.deltaTime);
             yield return null;
         }
     }
 
-    public void StartAlarmVolumeUpper()
+    public void StartControlAlarmVolume(bool isRogueEnter)
     {
-        var volumeUpperInJob = _alarmVolumeUpper();
-
-        if (volumeUpperInJob != null)
+        if (_corutine != null)
         {
-            StopCoroutine(volumeUpperInJob);
+            StopCoroutine(_corutine);
         }
 
-        StartCoroutine(_alarmVolumeUpper());
-
-    }
-
-    public void StartAlarmVolumeDowner()
-    {
-        var volumeDownerInJob = _alarmVolumeDowner();
-
-        if (volumeDownerInJob != null)
+        if (isRogueEnter)
         {
-            StopCoroutine(volumeDownerInJob);
+            _corutine = StartCoroutine(ControlAlarmVolume(_maxVolume));
         }
-
-        StartCoroutine(_alarmVolumeDowner());
+        else
+        {
+            _corutine = StartCoroutine(ControlAlarmVolume(_minVolume));
+        }
     }
-
 }
